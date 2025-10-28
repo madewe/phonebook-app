@@ -1,0 +1,25 @@
+h1 {
+    color: blue;
+    /*font-style: italic;*/
+    font-size: 45px;
+}
+
+.error {
+    color: red;
+    background: lightgrey;
+    font-size: 20px;
+    border-style: solid;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.status {
+    color: green;
+    background: lightgrey;
+    font-size: 20px;
+    border-style: solid;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
