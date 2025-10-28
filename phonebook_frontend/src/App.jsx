@@ -157,7 +157,7 @@ const App = () => {
       <h1>Phonebook</h1>
       <NotificationError message={newErrorMessage} />
       <NotificationStatus message={newStatusMessage} />
-      <Filter value={newSearchName} onChange={handleSearchChange} />
+      
       <AddForm 
         bezeichnung="add a new person" 
         onSubmit={addName} 
@@ -166,7 +166,8 @@ const App = () => {
           {bezeichnung: "number", value: newNumber, onChange: handleNumberChange}]} 
           debugName={newName} 
           debugNumber={newNumber}/>
-      <h2>Numbers</h2>
+      <h2>People and Numbers</h2>
+      <Filter value={newSearchName} onChange={handleSearchChange} />
       <AllPersons listToRender={persons} filterTerm={newSearchName} deletePerson={handleDelete}/>
     </div>
   )
@@ -200,7 +201,9 @@ const AllPersons = (props) => {
 const Filter = (props) => {
   return(
     <div>
-        filter shown with <input value={props.value} onChange={props.onChange} />
+      <p>
+        filter with <input value={props.value} onChange={props.onChange} />
+      </p>
     </div>
   )
 }
@@ -213,8 +216,10 @@ const AddForm = (props) => {
         <Input bezeichnung={props.inputs[0].bezeichnung} value={props.inputs[0].value} onChange={props.inputs[0].onChange} />
         <Input bezeichnung={props.inputs[1].bezeichnung} value={props.inputs[1].value} onChange={props.inputs[1].onChange} />
         <Button type="submit" bezeichnung="add" />
+        {/*
         <Debug bezeichnung="debug name" value={props.debugName} />
         <Debug bezeichnung="debug number" value={props.debugNumber} />
+        */}
       </form>
     </>
   )

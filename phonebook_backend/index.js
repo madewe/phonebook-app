@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+app.use(express.static('dist'))
 const cors = require('cors');
 app.use(cors());
 const morgan = require('morgan')
@@ -45,6 +46,7 @@ app.get('/', (request, response) => {
 
 app.get('/api/persons', (request, response) => {
 	response.json(persons)
+    console.log("Personen-Array im GET: ", persons);
 })
 
 app.get('/api/persons/:id', (request, response) => {
@@ -72,6 +74,8 @@ app.delete('/api/persons/:id', (request, response) => {
 	persons = persons.filter(person => String(person.id) !== id)
 
 	response.status(204).end()
+
+    console.log("Personen-Array nach DELETE: ", persons);
 })
 
 const generateId = () => {
@@ -103,6 +107,8 @@ app.post('/api/persons/', (request, response) => {
 	persons = persons.concat(person)
 	response.json(person)
 
+    console.log("Personen-Array im POST: ", persons);
+
 })
 
 app.put('/api/persons/:id', (request, response) => {
@@ -114,9 +120,9 @@ app.put('/api/persons/:id', (request, response) => {
         
     console.log("Body-Content", request.body);
     console.log("Person im Server: ", person);
-    //persons = persons.concat(person);
     persons = persons.map(p => p.id === person.id ? person : p);
     response.json(person);
+    console.log("Personen-Array im PUT: ", persons);
 })
 
 const unknownEndpoint = (request, response) => {
@@ -125,6 +131,6 @@ const unknownEndpoint = (request, response) => {
 
 app.use(unknownEndpoint)
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT)
 console.log(`Server running on port ${PORT}`)
